@@ -12,15 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3  # Checkout the repository
 
-      - name: GSMArenaDataset.zip
+      - name: Unzip GSMArenaDataset.zip
         run: |
-          mkdir -p ./unzipped_folder  # Create a folder to unzip files into
-          unzip ./GSMArenaDataset.zip -d ./GSMArenaDataset  # Unzip the file into that folder
-
+          mkdir -p ./GSMArenaDataset  # Create the folder for unzipped files
+          unzip -o ./GSMArenaDataset.zip -d ./GSMArenaDataset  # Unzip the file into that folder
+          
       - name: Commit the unzipped files
         run: |
           git config --global user.name "KolenMG"
           git config --global user.email "mateigabrieltarangoiu@gmail.com"
-          git add GSMArenaDataset/*  # Add the unzipped files
-          git commit -m "Unzip dataset.zip"
+          git add ./GSMArenaDataset/*  # Add the unzipped files to git
+          git commit -m "Unzip GSMArenaDataset.zip"
           git push  # Push the unzipped files back to the repository
