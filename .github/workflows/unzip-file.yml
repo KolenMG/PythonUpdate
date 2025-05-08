@@ -19,8 +19,8 @@ jobs:
           
       - name: Commit data to repo
         run: |
-        git config --global user.name "KolenMG"
-        git config --global user.email "mateigabrieltarangoiu@gmail.com"
-        git add GSMArenaDataset/*
-        git commit -m "Add new data"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/KolenMG/PythonUpdate.git
+          git config --global user.name "KolenMG"
+          git config --global user.email "mateigabrieltarangoiu@gmail.com"
+          git add GSMArenaDataset/*
+          git commit -m "Add new data"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/KolenMG/PythonUpdate.git
