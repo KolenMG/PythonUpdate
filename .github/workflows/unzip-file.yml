@@ -17,10 +17,10 @@ jobs:
           mkdir -p ./GSMArenaDataset  # Create the folder for unzipped files
           unzip -o ./GSMArenaDataset.zip -d ./GSMArenaDataset  # Unzip the file into that folder
           
-      - name: Commit the unzipped files
+      - name: Commit data to repo
         run: |
-          git config --global user.name "KolenMG"
-          git config --global user.email "mateigabrieltarangoiu@gmail.com"
-          git add ./GSMArenaDataset/*  # Add the unzipped files to git
-          git commit -m "Unzip GSMArenaDataset.zip"
-          git push  # Push the unzipped files back to the repository
+        git config --global user.name "KolenMG"
+        git config --global user.email "mateigabrieltarangoiu@gmail.com"
+        git add GSMArenaDataset/*
+        git commit -m "Add new data"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/KolenMG/PythonUpdate.git
