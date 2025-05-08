@@ -12,6 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3  # Checkout the repository
 
+      - name: Set up SSH key for authentication
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
       - name: Unzip GSMArenaDataset.zip
         run: |
           mkdir -p ./GSMArenaDataset  # Create the folder for unzipped files
@@ -23,4 +30,4 @@ jobs:
           git config --global user.email "mateigabrieltarangoiu@gmail.com"
           git add GSMArenaDataset/*
           git commit -m "Add new data"
-          git push https://x-access-token:${{ secrets.token2 }}@github.com/KolenMG/PythonUpdate.git
+          git push git@github.com:KolenMG/PythonUpdate.git
