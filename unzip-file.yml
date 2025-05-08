@@ -1,0 +1,26 @@
+name: Unzip File in Repo
+
+on:
+  push:
+    branches:
+      - main  # Trigger when pushing to the main branch (you can choose your branch)
+
+jobs:
+  unzip-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3  # Checkout the repository
+
+      - name: GSMArenaDataset.zip
+        run: |
+          mkdir -p ./unzipped_folder  # Create a folder to unzip files into
+          unzip ./GSMArenaDataset.zip -d ./GSMArenaDataset  # Unzip the file into that folder
+
+      - name: Commit the unzipped files
+        run: |
+          git config --global user.name "KolenMG"
+          git config --global user.email "mateigabrieltarangoiu@gmail.com"
+          git add GSMArenaDataset/*  # Add the unzipped files
+          git commit -m "Unzip dataset.zip"
+          git push  # Push the unzipped files back to the repository
