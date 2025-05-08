@@ -23,4 +23,4 @@ jobs:
           git config --global user.email "mateigabrieltarangoiu@gmail.com"
           git add GSMArenaDataset/*
           git commit -m "Add new data"
-          git push https://x-access-token:${{ secrets.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 }}@github.com/KolenMG/PythonUpdate.git
+          git push https://x-access-token:${{ secrets.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 }}@github.com/KolenMG/PythonUpdate.git
