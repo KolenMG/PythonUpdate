@@ -1,0 +1,27 @@
+name: Run Python Script on Schedule
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight UTC
+  workflow_dispatch:      # allows manual run too
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run script
+        run: python update2.py
+      - name: Commit data to repo
+        run: |
+          git config --global user.name "KolenMG"
+          git config --global user.email "mateigabrieltarangoiu@gmail.com"
+          git add GSMArenaDataset/*  # Add your data directory
+          git commit -m "Add new data"
+          git push
